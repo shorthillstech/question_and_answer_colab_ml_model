@@ -15,6 +15,12 @@ To immediately use a model on a given input (text, image, audio, ...), we provid
 [Ngrok](https://ngrok.com/docs) allows you to expose a web server running on your local machine to the internet. Just tell ngrok what port your web server is listening on.
 
 
+## File Path
+Here is the file path for Cartoon ML Model.
+```/Akbar_Q&A/Q&A_API.ipynb```
+
+You can use the CartoonAPI file in your Colab setup
+
 ## Installation
 ```pip install flask-ngrok```
 
