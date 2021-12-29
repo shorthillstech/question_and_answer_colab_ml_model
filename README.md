@@ -83,7 +83,9 @@ Open your local server and go to this path:
 ```http://127.0.0.1:8000/linkadd```
 
 
+## Sample Video 
 
+<img src="./docs/colab.gif" width="700" height="400" />
 
 
 
