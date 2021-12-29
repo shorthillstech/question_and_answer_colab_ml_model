@@ -1,12 +1,16 @@
 <template>
   <div class="mainContainer">
     <div class="main">
+      <div v-if="showPopup">
+        <AkbarPopup :passage1="Akbar" v-on:submit-passage="submit" />
+      </div>
       <div class="leftSide" v-bind:class="showClass ? 'active' : ''">
         <div class="header">
           <div class="userImg">
             <img src="/images/akbar.png" class="cover" />
           </div>
           <ul class="nav_icons">
+            <li><ion-icon @click="upload" name="push-outline"></ion-icon></li>
             <li><ion-icon name="scan-circle-outline"></ion-icon></li>
             <li><ion-icon name="chatbox"></ion-icon></li>
             <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
@@ -15,40 +19,45 @@
         <!-- Search  -->
         <div class="search-chat">
           <div>
-            <input type="text" placeholder="Search" id="search" @input="search"/>
+            <input
+              type="text"
+              placeholder="Search"
+              id="search"
+              @input="search"
+            />
             <ion-icon name="search-outline"></ion-icon>
           </div>
         </div>
         <!-- Chat list -->
         <div v-for="(expert, index) in experts" :key="index">
-        <div class="chatList" v-if="filtersShow === false">
-          <div class="block" @click="selectUser(expert.name)">
-            <div class="imgbox">
-              <img src="/images/akbar.png" class="cover" />
-            </div>
-            <div class="details">
-              <div class="listHead">
-                <h4>{{expert.name}}</h4>
-                <p class="time">{{expert.time}}</p>
+          <div class="chatList" v-if="filtersShow === false">
+            <div class="block" @click="selectUser(expert.name)">
+              <div class="imgbox">
+                <img src="/images/akbar.png" class="cover" />
+              </div>
+              <div class="details">
+                <div class="listHead">
+                  <h4>{{ expert.name }}</h4>
+                  <p class="time">{{ expert.time }}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
-        <div  v-for="filter in filters" :key="filter.name">
-        <div class="chatList">
-          <div class="block" @click="selectUser(filter.name)">
-            <div class="imgbox">
-              <img src="/images/akbar.png" class="cover" />
-            </div>
-            <div class="details">
-              <div class="listHead">
-                <h4>{{filter.name}}</h4>
-                <p class="time">{{filter.time}}</p>
+        <div v-for="filter in filters" :key="filter.name">
+          <div class="chatList">
+            <div class="block" @click="selectUser(filter.name)">
+              <div class="imgbox">
+                <img src="/images/akbar.png" class="cover" />
+              </div>
+              <div class="details">
+                <div class="listHead">
+                  <h4>{{ filter.name }}</h4>
+                  <p class="time">{{ filter.time }}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -59,7 +68,9 @@
             <div class="userImg">
               <img src="/images/akbar.png" class="cover" />
             </div>
-            <h4>{{ user }} <br /><span>{{status}}</span></h4>
+            <h4>
+              {{ user }} <br /><span>{{ status }}</span>
+            </h4>
           </div>
           <ul class="nav_icons">
             <li><ion-icon name="search-outline"></ion-icon></li>
@@ -70,7 +81,9 @@
         <div class="chatbox">
           <div v-for="(ques, indx) in questionHistory" :key="indx">
             <div class="message my_message">
-              <p>{{ ques.question }} <br /><span>{{ques.time}}</span></p>
+              <p>
+                {{ ques.question }} <br /><span>{{ ques.time }}</span>
+              </p>
             </div>
             <div class="message server_message">
               <p class="hello" v-if="ques.ans == ''">
@@ -82,7 +95,7 @@
                 </span>
               </p>
               <p class="hello" v-if="ques.ans != ''">
-                {{ ques.ans }} <br /><span>{{ques.time}}</span>
+                {{ ques.ans }} <br /><span>{{ ques.time }}</span>
               </p>
             </div>
           </div>
@@ -91,7 +104,12 @@
         <div class="chatbox_input">
           <ion-icon name="happy-outline"></ion-icon>
           <ion-icon name="attach-outline"></ion-icon>
-          <input id="data" type="text" @input="sendBtnCheck" placeholder="Type here ... " />
+          <input
+            id="data"
+            type="text"
+            @input="sendBtnCheck"
+            placeholder="Type here ... "
+          />
           <ion-icon v-if="send" name="send" @click="saveItem"></ion-icon>
           <ion-icon v-if="send === false" name="mic"></ion-icon>
         </div>
@@ -101,25 +119,28 @@
 </template>
 
 <script>
+import AkbarPopup from "./akbarPopup.vue";
 export default {
-  components: {},
+  components: {
+    AkbarPopup,
+  },
   data() {
     return {
-      showBackIcon:false,
-      showClass:false,
-      filtersShow:false,
-      send:false,
-      filters:[],
-      experts:[
-        {name:'Akbar',time:''},
-      ],
-      status:'',
+      showBackIcon: false,
+      showClass: false,
+      filtersShow: false,
+      send: false,
+      filters: [],
+      experts: [{ name: "Akbar", time: "" }],
+      status: "",
       user: "",
       questionHistory: [],
       data: "",
       url: "",
       loader: false,
-      Akbar:"A strong personality and a successful general, Akbar gradually enlarged the Mughal Empire to include much of the Indian subcontinent. His power and influence, however, extended over the entire subcontinent because of Mughal military, political, cultural, and economic dominance. To unify the vast Mughal state, Akbar established a centralised system of administration throughout his empire and adopted a policy of conciliating conquered rulers through marriage and diplomacy. To preserve peace and order in a religiously and culturally diverse empire, he adopted policies that won him the support of his non-Muslim subjects. Eschewing tribal bonds and Islamic state identity, Akbar strove to unite far-flung lands of his realm through loyalty, expressed through an Indo-Persian culture, to himself as an emperor. Mughal India developed a strong and stable economy, leading to commercial expansion and greater patronage of culture. Akbar himself was a patron of art and culture. He was fond of literature, and created a library of over 24,000 volumes written in Sanskrit, Urdu, Persian, Greek, Latin, Arabic and Kashmiri, staffed by many scholars, translators, artists, calligraphers, scribes, bookbinders and readers. He did much of the cataloging himself through three main groupings. Akbar also established the library of Fatehpur Sikri exclusively for women, and he decreed that schools for the education of both Muslims and Hindus should be established throughout the realm. He also encouraged bookbinding to become a high art. Holy men of many faiths, poets, architects, and artisans adorned his court from all over the world for study and discussion. Akbar's courts at Delhi, Agra, and Fatehpur Sikri became centres of the arts, letters, and learning. Timurid and Perso-Islamic culture began to merge and blend with indigenous Indian elements, and a distinct Indo-Persian culture emerged characterized by Mughal style arts, painting, and architecture. Disillusioned with orthodox Islam and perhaps hoping to bring about religious unity within his empire, Akbar promulgated Din-i-Ilahi, a syncretic creed derived mainly from Islam and Hinduism as well as some parts of Zoroastrianism and Christianity. Akbar's reign significantly influenced the course of Indian history. During his rule, the Mughal Empire tripled in size and wealth. He created a powerful military system and instituted effective political and social reforms. By abolishing the sectarian tax on non-Muslims and appointing them to high civil and military posts, he was the first Mughal ruler to win the trust and loyalty of the native subjects. He had Sanskrit literature translated, participated in native festivals, realising that a stable empire depended on the co-operation and good-will of his subjects. Thus, the foundations for a multicultural empire under Mughal rule were laid during his reign. Akbar was succeeded as emperor by his son, Prince Salim, later known as Jahangir.",
+      showPopup: false,
+      Akbar:
+        "A strong personality and a successful general, Akbar gradually enlarged the Mughal Empire to include much of the Indian subcontinent. His power and influence, however, extended over the entire subcontinent because of Mughal military, political, cultural, and economic dominance. To unify the vast Mughal state, Akbar established a centralised system of administration throughout his empire and adopted a policy of conciliating conquered rulers through marriage and diplomacy. To preserve peace and order in a religiously and culturally diverse empire, he adopted policies that won him the support of his non-Muslim subjects. Eschewing tribal bonds and Islamic state identity, Akbar strove to unite far-flung lands of his realm through loyalty, expressed through an Indo-Persian culture, to himself as an emperor. Mughal India developed a strong and stable economy, leading to commercial expansion and greater patronage of culture. Akbar himself was a patron of art and culture. He was fond of literature, and created a library of over 24,000 volumes written in Sanskrit, Urdu, Persian, Greek, Latin, Arabic and Kashmiri, staffed by many scholars, translators, artists, calligraphers, scribes, bookbinders and readers. He did much of the cataloging himself through three main groupings. Akbar also established the library of Fatehpur Sikri exclusively for women, and he decreed that schools for the education of both Muslims and Hindus should be established throughout the realm. He also encouraged bookbinding to become a high art. Holy men of many faiths, poets, architects, and artisans adorned his court from all over the world for study and discussion. Akbar's courts at Delhi, Agra, and Fatehpur Sikri became centres of the arts, letters, and learning. Timurid and Perso-Islamic culture began to merge and blend with indigenous Indian elements, and a distinct Indo-Persian culture emerged characterized by Mughal style arts, painting, and architecture. Disillusioned with orthodox Islam and perhaps hoping to bring about religious unity within his empire, Akbar promulgated Din-i-Ilahi, a syncretic creed derived mainly from Islam and Hinduism as well as some parts of Zoroastrianism and Christianity. Akbar's reign significantly influenced the course of Indian history. During his rule, the Mughal Empire tripled in size and wealth. He created a powerful military system and instituted effective political and social reforms. By abolishing the sectarian tax on non-Muslims and appointing them to high civil and military posts, he was the first Mughal ruler to win the trust and loyalty of the native subjects. He had Sanskrit literature translated, participated in native festivals, realising that a stable empire depended on the co-operation and good-will of his subjects. Thus, the foundations for a multicultural empire under Mughal rule were laid during his reign. Akbar was succeeded as emperor by his son, Prince Salim, later known as Jahangir.",
     };
   },
   created() {
@@ -129,73 +150,83 @@ export default {
   },
 
   methods: {
+    upload() {
+      this.showPopup = true;
+    },
+    submit(passage) {
+      if (passage === "") {
+      } else {
+        this.Akbar = passage;
+        console.log(this.Akbar);
+        this.showPopup = false;
+      }
+    },
     addZero(i) {
       if (i < 10) {
         i = "0" + i;
       }
       return i;
     },
-    findTime () {
+    findTime() {
       const d = new Date();
       const hours = this.addZero(d.getHours());
       const minutes = this.addZero(d.getMinutes());
-      const time = hours+":"+minutes
+      const time = hours + ":" + minutes;
       return time;
     },
-    sendBtnCheck(){
+    sendBtnCheck() {
       let a = document.getElementById("data").value;
-      if(a !== ''){
+      if (a !== "") {
         this.send = true;
-      }else{
+      } else {
         this.send = false;
       }
     },
-    search () {
+    search() {
       let b = document.getElementById("search").value;
-      if(b === ''){
+      if (b === "") {
         this.filtersShow = false;
-      }
-      else{
+      } else {
         this.filtersShow = true;
       }
-      this.filters = this.experts.filter((ele)=> {
+      this.filters = this.experts.filter((ele) => {
         return ele.name === b;
-      })
+      });
     },
-    back(){
+    back() {
       this.showClass = !this.showClass;
     },
     selectUser(user) {
-      console.log(user)
+      console.log(user);
       this.showClass = !this.showClass;
-      this.status = 'Online';
+      this.status = "Online";
       this.user = user;
       this.questionHistory = [];
     },
 
     async saveItem() {
       if (this.user === "") {
-
-      }
-     else if (this.user === "Akbar") {
+      } else if (this.user === "Akbar") {
         let time = this.findTime();
-        this.experts.map((ele)=>{
-          if(ele.name === this.user){
+        this.experts.map((ele) => {
+          if (ele.name === this.user) {
             ele.time = time;
           }
-        })
+        });
         let a = document.getElementById("data").value;
-        let newQues = { question: a, ans: "", time:time};
+        let newQues = { question: a, ans: "", time: time };
         this.questionHistory.push(newQues);
         this.loader = true;
-        axios.get(this.url + "/ask?q=" + a + '&&p=' + this.Akbar).then((response) => {
-          this.data = response.data;
-          let len = this.questionHistory.length;
-          this.questionHistory[len - 1].ans = this.data;
-          this.loader = false;
-          document.getElementById("data").value = '';
-          this.send = false;
-        });
+        axios
+          .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
+          .then((response) => {
+            this.data = response.data;
+            let len = this.questionHistory.length;
+            this.questionHistory[len - 1].ans = this.data;
+            this.loader = false;
+            document.getElementById("data").value = "";
+            this.send = false;
+          });
       }
     },
   },
@@ -358,7 +389,6 @@ export default {
   margin-bottom: 5px;
 }
 .chatList .block .details .listHead h4 {
-  
   font-size: 1.1em;
   font-weight: 600;
   color: #111;
@@ -549,18 +579,17 @@ export default {
 
 /* dot loader end */
 
-
 @media only screen and (max-width: 600px) {
-  .main{
+  .main {
     margin: 0px;
     width: 100%;
     height: calc(100vh - 0px);
     border: none;
   }
-  .main .leftSide{
+  .main .leftSide {
     border-right: none;
   }
-  .active{
+  .active {
     display: none;
   }
   .userText ion-icon {
