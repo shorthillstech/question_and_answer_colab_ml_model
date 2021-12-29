@@ -40,7 +40,7 @@ export default {
         this.$emit("submit-passage",this.passage);
     },
     close() {
-      this.$emit("close-modal");
+      this.$emit("close-popup");
     },
   },
 };
@@ -91,6 +91,12 @@ export default {
     height: 100%;
     border-radius: 0;
     border: none;
+  }
+  .textArea{
+    margin-top: 30px;
+  }
+  .textArea textarea {
+    border: 1px solid black;
   }
 }
 @media only screen and (max-width: 767px) {

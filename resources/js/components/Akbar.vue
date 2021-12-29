@@ -2,7 +2,7 @@
   <div class="mainContainer">
     <div class="main">
       <div v-if="showPopup">
-        <AkbarPopup :passage1="Akbar" v-on:submit-passage="submit" />
+        <AkbarPopup :passage1="Akbar" v-on:submit-passage="submit" v-on:close-popup="closepopup" />
       </div>
       <div class="leftSide" v-bind:class="showClass ? 'active' : ''">
         <div class="header">
@@ -150,6 +150,9 @@ export default {
   },
 
   methods: {
+    closepopup(){
+      this.showPopup = false;
+    },
     upload() {
       this.showPopup = true;
     },
