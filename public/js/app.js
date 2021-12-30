@@ -15500,6 +15500,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
   },
   methods: {
+    closepopup: function closepopup() {
+      this.showPopup = false;
+    },
     upload: function upload() {
       this.showPopup = true;
     },
@@ -15732,7 +15735,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("submit-passage", this.passage);
     },
     close: function close() {
-      this.$emit("close-modal");
+      this.$emit("close-popup");
     }
   }
 });
@@ -20961,7 +20964,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.popup[data-v-f5847ce4] {\n  position: fixed;\n  padding-top: 50px;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 99;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n}\n.pop-inner[data-v-f5847ce4] {\n  margin-top: 0;\n  margin-right: 0;\n  margin-left: 0;\n\n  height: 85%;\n  width: 50%;\n  background: #fff;\n  border-radius: 15px;\n  padding: 20px;\n}\n.textArea[data-v-f5847ce4] {\n    width: 100%;\n    margin-top: 10px;\n    text-align: center;\n}\n.textArea textarea[data-v-f5847ce4] {\n    width: 100%;\n}\n.submitBtn[data-v-f5847ce4] {\n    margin-top: 10px;\n    text-align: center;\n}\n.cross-button[data-v-f5847ce4] {\n  text-align: right;\n}\n@media only screen and (max-width: 767px) {\n.pop-inner[data-v-f5847ce4] {\n    width: 100%;\n    height: 100%;\n    border-radius: 0;\n    border: none;\n}\n}\n@media only screen and (max-width: 767px) {\n.popup[data-v-f5847ce4] {\n    padding-top: 0;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.popup[data-v-f5847ce4] {\n  position: fixed;\n  padding-top: 50px;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 99;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n}\n.pop-inner[data-v-f5847ce4] {\n  margin-top: 0;\n  margin-right: 0;\n  margin-left: 0;\n\n  height: 85%;\n  width: 50%;\n  background: #fff;\n  border-radius: 15px;\n  padding: 20px;\n}\n.textArea[data-v-f5847ce4] {\n    width: 100%;\n    margin-top: 10px;\n    text-align: center;\n}\n.textArea textarea[data-v-f5847ce4] {\n    width: 100%;\n}\n.submitBtn[data-v-f5847ce4] {\n    margin-top: 10px;\n    text-align: center;\n}\n.cross-button[data-v-f5847ce4] {\n  text-align: right;\n}\n@media only screen and (max-width: 767px) {\n.pop-inner[data-v-f5847ce4] {\n    width: 100%;\n    height: 100%;\n    border-radius: 0;\n    border: none;\n}\n.textArea[data-v-f5847ce4]{\n    margin-top: 30px;\n}\n.textArea textarea[data-v-f5847ce4] {\n    border: 1px solid black;\n}\n}\n@media only screen and (max-width: 767px) {\n.popup[data-v-f5847ce4] {\n    padding-top: 0;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39953,7 +39956,10 @@ var render = function () {
             [
               _c("AkbarPopup", {
                 attrs: { passage1: _vm.Akbar },
-                on: { "submit-passage": _vm.submit },
+                on: {
+                  "submit-passage": _vm.submit,
+                  "close-popup": _vm.closepopup,
+                },
               }),
             ],
             1
@@ -39968,17 +39974,6 @@ var render = function () {
             _vm._m(0),
             _vm._v(" "),
             _c("ul", { staticClass: "nav_icons" }, [
-              _c(
-                "li",
-                [
-                  _c("ion-icon", {
-                    attrs: { name: "push-outline" },
-                    on: { click: _vm.upload },
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "li",
                 [_c("ion-icon", { attrs: { name: "scan-circle-outline" } })],
@@ -40103,6 +40098,17 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("ul", { staticClass: "nav_icons" }, [
+              _c(
+                "li",
+                [
+                  _c("ion-icon", {
+                    attrs: { name: "push-outline" },
+                    on: { click: _vm.upload },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "li",
                 [_c("ion-icon", { attrs: { name: "search-outline" } })],

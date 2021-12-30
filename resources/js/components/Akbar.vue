@@ -10,7 +10,6 @@
             <img src="/images/akbar.png" class="cover" />
           </div>
           <ul class="nav_icons">
-            <li><ion-icon @click="upload" name="push-outline"></ion-icon></li>
             <li><ion-icon name="scan-circle-outline"></ion-icon></li>
             <li><ion-icon name="chatbox"></ion-icon></li>
             <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
@@ -73,6 +72,7 @@
             </h4>
           </div>
           <ul class="nav_icons">
+            <li><ion-icon @click="upload" name="push-outline"></ion-icon></li>
             <li><ion-icon name="search-outline"></ion-icon></li>
             <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
           </ul>
