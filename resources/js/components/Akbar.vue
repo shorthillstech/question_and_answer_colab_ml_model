@@ -30,7 +30,7 @@
         <!-- Chat list -->
         <div v-for="(expert, index) in experts" :key="index">
           <div class="chatList" v-if="filtersShow === false">
-            <div class="block" @click="selectUser(expert.name)">
+            <div class="block" @click="selectUser(expert.name)" :class="{ selectUser: expert.name === user }">
               <div class="imgbox">
                 <img src="/images/akbar.png" class="cover" />
               </div>
@@ -108,6 +108,7 @@
             id="data"
             type="text"
             @input="sendBtnCheck"
+            v-on:keyup.enter="saveItem"
             placeholder="Type here ... "
           />
           <ion-icon v-if="send" name="send" @click="saveItem"></ion-icon>
@@ -204,7 +205,6 @@ export default {
       this.showClass = !this.showClass;
       this.status = "Online";
       this.user = user;
-      this.questionHistory = [];
     },
 
     async saveItem() {
@@ -219,6 +219,7 @@ export default {
         let a = document.getElementById("data").value;
         let newQues = { question: a, ans: "", time: time };
         this.questionHistory.push(newQues);
+        document.getElementById("data").value = "";
         this.loader = true;
         axios
           .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
@@ -227,7 +228,7 @@ export default {
             let len = this.questionHistory.length;
             this.questionHistory[len - 1].ans = this.data;
             this.loader = false;
-            document.getElementById("data").value = "";
+            
             this.send = false;
           });
       }
@@ -373,6 +374,9 @@ export default {
   padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   cursor: pointer;
+}
+.selectUser {
+  background: #aaa8a6;
 }
 .chatList .block .imgbox {
   position: relative;
