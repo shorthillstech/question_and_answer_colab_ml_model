@@ -78,7 +78,7 @@
           </ul>
         </div>
         <!-- chat box -->
-        <div class="chatbox">
+        <div id="chatboxid" class="chatbox">
           <div v-for="(ques, indx) in questionHistory" :key="indx">
             <div class="message my_message">
               <p>
@@ -208,6 +208,8 @@ export default {
     },
 
     async saveItem() {
+      var chatboxid = this.$el.querySelector("#chatboxid");
+      
       if (this.user === "") {
       } else if (this.user === "Akbar") {
         let time = this.findTime();
@@ -221,6 +223,8 @@ export default {
         this.questionHistory.push(newQues);
         document.getElementById("data").value = "";
         this.loader = true;
+        console.log("1",chatboxid.scrollHeight)
+        chatboxid.scrollTop = chatboxid.scrollHeight;
         axios
           .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
           .then((response) => {
@@ -230,6 +234,8 @@ export default {
             this.loader = false;
             
             this.send = false;
+            console.log("1",chatboxid.scrollHeight)
+            chatboxid.scrollTop = chatboxid.scrollHeight;
           });
       }
     },

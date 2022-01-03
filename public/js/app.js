@@ -15563,11 +15563,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var time, a, newQues;
+        var chatboxid, time, a, newQues;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                chatboxid = _this2.$el.querySelector("#chatboxid");
+
                 if (_this2.user === "") {} else if (_this2.user === "Akbar") {
                   time = _this2.findTime();
 
@@ -15588,16 +15590,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   document.getElementById("data").value = "";
                   _this2.loader = true;
+                  console.log("1", chatboxid.scrollHeight);
+                  chatboxid.scrollTop = chatboxid.scrollHeight;
                   axios.get(_this2.url + "/ask?q=" + a + "&&p=" + _this2.Akbar).then(function (response) {
                     _this2.data = response.data;
                     var len = _this2.questionHistory.length;
                     _this2.questionHistory[len - 1].ans = _this2.data;
                     _this2.loader = false;
                     _this2.send = false;
+                    console.log("1", chatboxid.scrollHeight);
+                    chatboxid.scrollTop = chatboxid.scrollHeight;
                   });
                 }
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -40126,7 +40132,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "chatbox" },
+            { staticClass: "chatbox", attrs: { id: "chatboxid" } },
             _vm._l(_vm.questionHistory, function (ques, indx) {
               return _c("div", { key: indx }, [
                 _c("div", { staticClass: "message my_message" }, [
