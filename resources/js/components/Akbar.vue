@@ -30,7 +30,7 @@
         <!-- Chat list -->
         <div v-for="(expert, index) in experts" :key="index">
           <div class="chatList" v-if="filtersShow === false">
-            <div class="block" @click="selectUser(expert.name)">
+            <div class="block" @click="selectUser(expert.name)" :class="{ selectUser: expert.name === user }">
               <div class="imgbox">
                 <img src="/images/akbar.png" class="cover" />
               </div>
@@ -78,7 +78,7 @@
           </ul>
         </div>
         <!-- chat box -->
-        <div class="chatbox">
+        <div id="chatboxid" class="chatbox">
           <div v-for="(ques, indx) in questionHistory" :key="indx">
             <div class="message my_message">
               <p>
@@ -108,6 +108,7 @@
             id="data"
             type="text"
             @input="sendBtnCheck"
+            v-on:keyup.enter="saveItem"
             placeholder="Type here ... "
           />
           <ion-icon v-if="send" name="send" @click="saveItem"></ion-icon>
@@ -204,10 +205,11 @@ export default {
       this.showClass = !this.showClass;
       this.status = "Online";
       this.user = user;
-      this.questionHistory = [];
     },
 
     async saveItem() {
+      var chatboxid = this.$el.querySelector("#chatboxid");
+      
       if (this.user === "") {
       } else if (this.user === "Akbar") {
         let time = this.findTime();
@@ -219,7 +221,10 @@ export default {
         let a = document.getElementById("data").value;
         let newQues = { question: a, ans: "", time: time };
         this.questionHistory.push(newQues);
+        document.getElementById("data").value = "";
         this.loader = true;
+        console.log("1",chatboxid.scrollHeight)
+        chatboxid.scrollTop = chatboxid.scrollHeight;
         axios
           .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
           .then((response) => {
@@ -227,8 +232,10 @@ export default {
             let len = this.questionHistory.length;
             this.questionHistory[len - 1].ans = this.data;
             this.loader = false;
-            document.getElementById("data").value = "";
+            
             this.send = false;
+            console.log("1",chatboxid.scrollHeight)
+            chatboxid.scrollTop = chatboxid.scrollHeight;
           });
       }
     },
@@ -373,6 +380,9 @@ export default {
   padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   cursor: pointer;
+}
+.selectUser {
+  background: #aaa8a6;
 }
 .chatList .block .imgbox {
   position: relative;
