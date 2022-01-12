@@ -16,10 +16,10 @@ To immediately use a model on a given input (text, image, audio, ...), we provid
 
 
 ## File Path
-Here is the file path for Cartoon ML Model.
+Here is the file path for Akbar Colab ML Model.
 ```/Akbar_Q&A/Q&A_API.ipynb```
 
-You can use the CartoonAPI file in your Colab setup
+You can use the Akbar Colab file in your Colab setup
 
 ## Installation
 ```pip install flask-ngrok```
