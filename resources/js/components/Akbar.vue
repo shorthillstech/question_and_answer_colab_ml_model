@@ -2,7 +2,11 @@
   <div class="mainContainer">
     <div class="main">
       <div v-if="showPopup">
-        <AkbarPopup :passage1="Akbar" v-on:submit-passage="submit" v-on:close-popup="closepopup" />
+        <AkbarPopup
+          :passage1="Akbar"
+          v-on:submit-passage="submit"
+          v-on:close-popup="closepopup"
+        />
       </div>
       <div class="leftSide" v-bind:class="showClass ? 'active' : ''">
         <div class="header">
@@ -30,7 +34,11 @@
         <!-- Chat list -->
         <div v-for="(expert, index) in experts" :key="index">
           <div class="chatList" v-if="filtersShow === false">
-            <div class="block" @click="selectUser(expert.name)" :class="{ selectUser: expert.name === user }">
+            <div
+              class="block"
+              @click="selectUser(expert.name)"
+              :class="{ selectUser: expert.name === user }"
+            >
               <div class="imgbox">
                 <img src="/images/akbar.png" class="cover" />
               </div>
@@ -82,7 +90,7 @@
           <div v-for="(ques, indx) in questionHistory" :key="indx">
             <div class="message my_message">
               <p>
-                {{ ques.question }} <br /><span>{{ ques.time }}</span>
+                {{ ques.question }} <span>{{ ques.time }}</span>
               </p>
             </div>
             <div class="message server_message">
@@ -95,7 +103,7 @@
                 </span>
               </p>
               <p class="hello" v-if="ques.ans != ''">
-                {{ ques.ans }} <br /><span>{{ ques.time }}</span>
+                {{ ques.ans }}<span>{{ ques.time }}</span>
               </p>
             </div>
           </div>
@@ -151,7 +159,7 @@ export default {
   },
 
   methods: {
-    closepopup(){
+    closepopup() {
       this.showPopup = false;
     },
     upload() {
@@ -207,7 +215,7 @@ export default {
       this.user = user;
     },
 
-    async saveItem() {      
+    async saveItem() {
       if (this.user === "") {
       } else if (this.user === "Akbar") {
         let time = this.findTime();
@@ -221,7 +229,7 @@ export default {
         this.questionHistory.push(newQues);
         document.getElementById("data").value = "";
         this.loader = true;
-        console.log("1",chatboxid.scrollHeight)
+        console.log("1", chatboxid.scrollHeight);
         axios
           .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
           .then((response) => {
@@ -443,14 +451,16 @@ export default {
   margin: 5px 0;
 }
 .message p {
-  position: relative;
-  right: 0;
-  text-align: right;
+  position: relative; 
+  /* right: 0; */
+  text-align: left;
   max-width: 65%;
-  padding: 12px;
+  
+  padding: 6px 7px 8px 9px;
   background: #dcf8c6;
   border-radius: 10px;
   font-size: 0.9em;
+  display: block;
 }
 .my_message p::before {
   content: "";
@@ -469,10 +479,12 @@ export default {
 }
 
 .message span {
-  display: block;
-  margin-top: 5px;
+  /* display: block; */
+  float: right;
+  margin: 10px 0 -10px 35px;
   font-size: 0.85em;
   opacity: 0.5;
+  padding: 0;
 }
 .my_message {
   justify-content: flex-end;
@@ -532,7 +544,7 @@ export default {
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 40px;
+  height: 30px;
 }
 .lds-ellipsis div {
   position: absolute;
