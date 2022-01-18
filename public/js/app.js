@@ -15467,6 +15467,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -15510,7 +15521,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     submit: function submit(passage) {
       if (passage === "") {} else {
         this.Akbar = passage;
-        console.log(this.Akbar);
         this.showPopup = false;
       }
     },
@@ -15522,39 +15532,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return i;
     },
     findTime: function findTime() {
-      var d = new Date();
-      var hours = this.addZero(d.getHours());
-      var minutes = this.addZero(d.getMinutes());
+      var currentDate = new Date();
+      var hours = this.addZero(currentDate.getHours());
+      var minutes = this.addZero(currentDate.getMinutes());
       var time = hours + ":" + minutes;
       return time;
     },
     sendBtnCheck: function sendBtnCheck() {
-      var a = document.getElementById("data").value;
+      var sendValue = document.getElementById("data").value;
 
-      if (a !== "") {
+      if (sendValue !== "") {
         this.send = true;
       } else {
         this.send = false;
       }
     },
     search: function search() {
-      var b = document.getElementById("search").value;
+      var searchValue = document.getElementById("search").value;
 
-      if (b === "") {
+      if (searchValue === "") {
         this.filtersShow = false;
       } else {
         this.filtersShow = true;
       }
 
       this.filters = this.experts.filter(function (ele) {
-        return ele.name === b;
+        return ele.name === searchValue;
       });
     },
     back: function back() {
       this.showClass = !this.showClass;
     },
     selectUser: function selectUser(user) {
-      console.log(user);
       this.showClass = !this.showClass;
       this.status = "Online";
       this.user = user;
@@ -15563,7 +15572,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var time, a, newQues;
+        var time, typedMessage, newQues;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -15577,9 +15586,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   });
 
-                  a = document.getElementById("data").value;
+                  typedMessage = document.getElementById("data").value;
                   newQues = {
-                    question: a,
+                    question: typedMessage,
                     ans: "",
                     time: time
                   };
@@ -15588,8 +15597,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   document.getElementById("data").value = "";
                   _this2.loader = true;
-                  console.log("1", chatboxid.scrollHeight);
-                  axios.get(_this2.url + "/ask?q=" + a + "&&p=" + _this2.Akbar).then(function (response) {
+                  axios.get(_this2.url + "/ask?q=" + typedMessage + "&&p=" + _this2.Akbar).then(function (response) {
                     _this2.data = response.data;
                     var len = _this2.questionHistory.length;
                     _this2.questionHistory[len - 1].ans = _this2.data;
@@ -20921,7 +20929,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n*[data-v-577983ce] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: \"Open Sans\", sans-serif;\n}\n.mainContainer[data-v-577983ce] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n  background: linear-gradient(\n    #009688 0%,\n    #009688 130px,\n    #d9dbd5 130px,\n    #d9dbd5 100%\n  );\n}\n.main[data-v-577983ce] {\n  position: relative;\n  width: 95%;\n  margin: 0 auto 0;\n  max-width: 100%;\n  height: calc(100vh - 40px);\n  background: #ffff;\n  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.06);\n  display: flex;\n}\n.main .leftSide[data-v-577983ce] {\n  position: relative;\n  width: 30%;\n  flex: 30%;\n  background: #ffff;\n  border-right: 1px solid #000;\n}\n.main .rightSide[data-v-577983ce] {\n  position: relative;\n  width: 70%;\n  flex: 70%;\n  background: #e5ddd5;\n}\n.main .rightSide[data-v-577983ce]::before {\n  contain: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-image: url(\"/images/pattern.png\");\n  opacity: 0.06;\n}\n.header[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: 60px;\n  background: #ededed;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 15px;\n}\n.userImg[data-v-577983ce] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  overflow: hidden;\n  border-radius: 50%;\n  cursor: pointer;\n}\n.cover[data-v-577983ce] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.nav_icons[data-v-577983ce] {\n  display: flex;\n}\n.nav_icons li[data-v-577983ce] {\n  display: flex;\n  list-style: none;\n  cursor: pointer;\n  color: #51585c;\n  font-size: 1.5em;\n  margin-left: 22px;\n}\n.search-chat[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: 50px;\n  background: #f6f6f6;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 0 15px;\n}\n.search-chat div[data-v-577983ce] {\n  width: 100%;\n}\n.search-chat div input[data-v-577983ce] {\n  width: 100%;\n  outline: none;\n  border: none;\n  background: #fff;\n  padding: 6px;\n  height: 38px;\n  border-radius: 30px;\n  font-size: 14px;\n  padding-left: 40px;\n}\n.search-chat div input[data-v-577983ce]::-moz-placeholder {\n  color: #bbb;\n}\n.search-chat div input[data-v-577983ce]:-ms-input-placeholder {\n  color: #bbb;\n}\n.search-chat div input[data-v-577983ce]::placeholder {\n  color: #bbb;\n}\n.search-chat div ion-icon[data-v-577983ce] {\n  position: absolute;\n  left: 30px;\n  top: 17px;\n  font-size: 1.2em;\n}\n.chatList[data-v-577983ce] {\n  position: relative;\n  height: calc(100% - 110px);\n  overflow: auto;\n  /* background: #ff0; */\n}\n.chatList .block[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  display: flex;\n  /* justify-content: center; */\n  align-items: center;\n  padding: 15px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  cursor: pointer;\n}\n.selectUser[data-v-577983ce] {\n  background: #aaa8a6;\n}\n.chatList .block .imgbox[data-v-577983ce] {\n  position: relative;\n  width: 45px;\n  height: 40px;\n  overflow: hidden;\n  border-radius: 50%;\n}\n.chatList .block .details[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n}\n.chatList .block .details .listHead[data-v-577983ce] {\n  display: flex;\n  margin-left: 10px;\n  justify-content: space-between;\n  margin-bottom: 5px;\n}\n.chatList .block .details .listHead h4[data-v-577983ce] {\n  font-size: 1.1em;\n  font-weight: 600;\n  color: #111;\n}\n.chatList .block .details .listHead .time[data-v-577983ce] {\n  font-size: 0.75em;\n  color: #aaa;\n}\n\n/* right Side */\n.userText[data-v-577983ce] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.userText ion-icon[data-v-577983ce] {\n  font-size: 25px;\n  font-weight: 500;\n  margin-right: 10px;\n  display: none;\n}\n.userText h4[data-v-577983ce] {\n  font-size: 15px;\n  font-weight: 500;\n  line-height: 1.2em;\n  margin-left: 15px;\n}\n.userText span[data-v-577983ce] {\n  font-size: 0.8em;\n  color: #555;\n}\n.chatbox[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: calc(100% - 135px);\n  padding: 5px 30px;\n  overflow-y: auto;\n}\n.message[data-v-577983ce] {\n  position: relative;\n  display: flex;\n  width: 100%;\n  margin: 5px 0;\n}\n.message p[data-v-577983ce] {\n  position: relative;\n  right: 0;\n  text-align: right;\n  max-width: 65%;\n  padding: 12px;\n  background: #dcf8c6;\n  border-radius: 10px;\n  font-size: 0.9em;\n}\n.my_message p[data-v-577983ce]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  right: -12px;\n  width: 20px;\n  height: 20px;\n  background: linear-gradient(\n    135deg,\n    #dcf8c6 0%,\n    #dcf8c6 50%,\n    transparent 50%,\n    transparent\n  );\n}\n.message span[data-v-577983ce] {\n  display: block;\n  margin-top: 5px;\n  font-size: 0.85em;\n  opacity: 0.5;\n}\n.my_message[data-v-577983ce] {\n  justify-content: flex-end;\n}\n.server_message[data-v-577983ce] {\n  justify-content: flex-start;\n}\n.server_message p[data-v-577983ce] {\n  background: #fff;\n  text-align: left;\n}\n.server_message .hello[data-v-577983ce]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: -12px;\n  width: 20px;\n  height: 20px;\n  background: linear-gradient(\n    225deg,\n    #fff 0%,\n    #fff 50%,\n    transparent 50%,\n    transparent\n  );\n}\n.chatbox_input[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  background: #f0f0f0;\n  padding: 15px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.chatbox_input ion-icon[data-v-577983ce] {\n  cursor: pointer;\n  font-size: 1.8em;\n  color: #51585c;\n}\n.chatbox_input ion-icon[data-v-577983ce]:nth-child(1) {\n  margin-right: 15px;\n}\n.chatbox_input input[data-v-577983ce] {\n  position: relative;\n  width: 90%;\n  margin: 0 20px;\n  padding: 10px 20px;\n  border: none;\n  outline: none;\n  font-size: 1em;\n  border-radius: 30px;\n}\n\n/* dot loader */\n.lds-ellipsis[data-v-577983ce] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 40px;\n}\n.lds-ellipsis div[data-v-577983ce] {\n  position: absolute;\n\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: black;\n  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);\n          animation-timing-function: cubic-bezier(0, 1, 1, 0);\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(1) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis1-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis1-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(2) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(3) {\n  left: 32px;\n  -webkit-animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(4) {\n  left: 56px;\n  -webkit-animation: lds-ellipsis3-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis3-data-v-577983ce 0.6s infinite;\n}\n@-webkit-keyframes lds-ellipsis1-data-v-577983ce {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes lds-ellipsis1-data-v-577983ce {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@-webkit-keyframes lds-ellipsis3-data-v-577983ce {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@keyframes lds-ellipsis3-data-v-577983ce {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@-webkit-keyframes lds-ellipsis2-data-v-577983ce {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n@keyframes lds-ellipsis2-data-v-577983ce {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n\n/* dot loader end */\n@media only screen and (max-width: 600px) {\n.main[data-v-577983ce] {\n    margin: 0px;\n    width: 100%;\n    height: calc(100vh - 0px);\n    border: none;\n}\n.main .leftSide[data-v-577983ce] {\n    border-right: none;\n}\n.active[data-v-577983ce] {\n    display: none;\n}\n.userText ion-icon[data-v-577983ce] {\n    display: flex;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n*[data-v-577983ce] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: \"Open Sans\", sans-serif;\n}\n.mainContainer[data-v-577983ce] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n  background: linear-gradient(\n    #009688 0%,\n    #009688 130px,\n    #d9dbd5 130px,\n    #d9dbd5 100%\n  );\n}\n.main[data-v-577983ce] {\n  position: relative;\n  width: 95%;\n  margin: 0 auto 0;\n  max-width: 100%;\n  height: calc(100vh - 40px);\n  background: #ffff;\n  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.06);\n  display: flex;\n}\n.main .leftSide[data-v-577983ce] {\n  position: relative;\n  width: 30%;\n  flex: 30%;\n  background: #ffff;\n  border-right: 1px solid #000;\n}\n.main .rightSide[data-v-577983ce] {\n  position: relative;\n  width: 70%;\n  flex: 70%;\n  background: #e5ddd5;\n}\n.header[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: 60px;\n  background: #ededed;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 15px;\n}\n.userImg[data-v-577983ce] {\n  position: relative;\n  width: 40px;\n  height: 40px;\n  overflow: hidden;\n  border-radius: 50%;\n  cursor: pointer;\n}\n.cover[data-v-577983ce] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.nav_icons[data-v-577983ce] {\n  display: flex;\n}\n.nav_icons li[data-v-577983ce] {\n  display: flex;\n  list-style: none;\n  cursor: pointer;\n  color: #51585c;\n  font-size: 1.5em;\n  margin-left: 22px;\n}\n.search-chat[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: 50px;\n  background: #f6f6f6;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 0 15px;\n}\n.search-chat div[data-v-577983ce] {\n  width: 100%;\n}\n.search-chat div input[data-v-577983ce] {\n  width: 100%;\n  outline: none;\n  border: none;\n  background: #fff;\n  padding: 6px;\n  height: 38px;\n  border-radius: 30px;\n  font-size: 14px;\n  padding-left: 40px;\n}\n.search-chat div input[data-v-577983ce]::-moz-placeholder {\n  color: #bbb;\n}\n.search-chat div input[data-v-577983ce]:-ms-input-placeholder {\n  color: #bbb;\n}\n.search-chat div input[data-v-577983ce]::placeholder {\n  color: #bbb;\n}\n.search-chat div ion-icon[data-v-577983ce] {\n  position: absolute;\n  left: 30px;\n  top: 17px;\n  font-size: 1.2em;\n}\n.chatList[data-v-577983ce] {\n  position: relative;\n  height: calc(100% - 110px);\n  overflow: auto;\n  /* background: #ff0; */\n}\n.chatList .block[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  display: flex;\n  /* justify-content: center; */\n  align-items: center;\n  padding: 15px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.06);\n  cursor: pointer;\n}\n.selectUser[data-v-577983ce] {\n  background: #aaa8a6;\n}\n.chatList .block .imgbox[data-v-577983ce] {\n  position: relative;\n  width: 45px;\n  height: 40px;\n  overflow: hidden;\n  border-radius: 50%;\n}\n.chatList .block .details[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n}\n.chatList .block .details .listHead[data-v-577983ce] {\n  display: flex;\n  margin-left: 10px;\n  justify-content: space-between;\n  margin-bottom: 5px;\n}\n.chatList .block .details .listHead h4[data-v-577983ce] {\n  font-size: 1.1em;\n  font-weight: 600;\n  color: #111;\n}\n.chatList .block .details .listHead .time[data-v-577983ce] {\n  font-size: 0.75em;\n  color: #aaa;\n}\n\n/* right Side */\n.userText[data-v-577983ce] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.userText ion-icon[data-v-577983ce] {\n  font-size: 25px;\n  font-weight: 500;\n  margin-right: 10px;\n  display: none;\n}\n.userText h4[data-v-577983ce] {\n  font-size: 15px;\n  font-weight: 500;\n  line-height: 1.2em;\n  margin-left: 15px;\n}\n.userText span[data-v-577983ce] {\n  font-size: 0.8em;\n  color: #555;\n}\n.chatbox[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  height: calc(100% - 135px);\n  padding: 5px 30px;\n  overflow-y: auto;\n}\n.message[data-v-577983ce] {\n  position: relative;\n  display: flex;\n  width: 100%;\n  margin: 5px 0;\n}\n.message p[data-v-577983ce] {\n  position: relative; \n  /* right: 0; */\n  text-align: left;\n  max-width: 65%;\n  \n  padding: 6px 7px 8px 9px;\n  background: #dcf8c6;\n  border-radius: 10px;\n  font-size: 0.9em;\n  display: block;\n}\n.my_message p[data-v-577983ce]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  right: -12px;\n  width: 20px;\n  height: 20px;\n  background: linear-gradient(\n    135deg,\n    #dcf8c6 0%,\n    #dcf8c6 50%,\n    transparent 50%,\n    transparent\n  );\n}\n.message span[data-v-577983ce] {\n  /* display: block; */\n  float: right;\n  margin: 10px 0 -10px 35px;\n  font-size: 0.85em;\n  opacity: 0.5;\n  padding: 0;\n}\n.my_message[data-v-577983ce] {\n  justify-content: flex-end;\n}\n.server_message[data-v-577983ce] {\n  justify-content: flex-start;\n}\n.server_message p[data-v-577983ce] {\n  background: #fff;\n  text-align: left;\n}\n.server_message .hello[data-v-577983ce]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: -12px;\n  width: 20px;\n  height: 20px;\n  background: linear-gradient(\n    225deg,\n    #fff 0%,\n    #fff 50%,\n    transparent 50%,\n    transparent\n  );\n}\n.chatbox_input[data-v-577983ce] {\n  position: relative;\n  width: 100%;\n  background: #f0f0f0;\n  padding: 15px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.chatbox_input ion-icon[data-v-577983ce] {\n  cursor: pointer;\n  font-size: 1.8em;\n  color: #51585c;\n}\n.chatbox_input ion-icon[data-v-577983ce]:nth-child(1) {\n  margin-right: 15px;\n}\n.chatbox_input input[data-v-577983ce] {\n  position: relative;\n  width: 90%;\n  margin: 0 20px;\n  padding: 10px 20px;\n  border: none;\n  outline: none;\n  font-size: 1em;\n  border-radius: 30px;\n}\n\n/* dot loader */\n.lds-ellipsis[data-v-577983ce] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 30px;\n}\n.lds-ellipsis div[data-v-577983ce] {\n  position: absolute;\n\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: black;\n  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);\n          animation-timing-function: cubic-bezier(0, 1, 1, 0);\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(1) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis1-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis1-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(2) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(3) {\n  left: 32px;\n  -webkit-animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis2-data-v-577983ce 0.6s infinite;\n}\n.lds-ellipsis div[data-v-577983ce]:nth-child(4) {\n  left: 56px;\n  -webkit-animation: lds-ellipsis3-data-v-577983ce 0.6s infinite;\n          animation: lds-ellipsis3-data-v-577983ce 0.6s infinite;\n}\n@-webkit-keyframes lds-ellipsis1-data-v-577983ce {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes lds-ellipsis1-data-v-577983ce {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@-webkit-keyframes lds-ellipsis3-data-v-577983ce {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@keyframes lds-ellipsis3-data-v-577983ce {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@-webkit-keyframes lds-ellipsis2-data-v-577983ce {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n@keyframes lds-ellipsis2-data-v-577983ce {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n\n/* dot loader end */\n@media only screen and (max-width: 600px) {\n.main[data-v-577983ce] {\n    margin: 0px;\n    width: 100%;\n    height: calc(100vh - 0px);\n    border: none;\n}\n.main .leftSide[data-v-577983ce] {\n    border-right: none;\n}\n.active[data-v-577983ce] {\n    display: none;\n}\n.userText ion-icon[data-v-577983ce] {\n    display: flex;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20969,7 +20977,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.popup[data-v-f5847ce4] {\n  position: fixed;\n  padding-top: 50px;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 99;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n}\n.pop-inner[data-v-f5847ce4] {\n  margin-top: 0;\n  margin-right: 0;\n  margin-left: 0;\n\n  height: 85%;\n  width: 50%;\n  background: #fff;\n  border-radius: 15px;\n  padding: 20px;\n}\n.textArea[data-v-f5847ce4] {\n    width: 100%;\n    margin-top: 10px;\n    text-align: center;\n}\n.textArea textarea[data-v-f5847ce4] {\n    width: 100%;\n}\n.submitBtn[data-v-f5847ce4] {\n    margin-top: 10px;\n    text-align: center;\n}\n.cross-button[data-v-f5847ce4] {\n  text-align: right;\n}\n@media only screen and (max-width: 767px) {\n.pop-inner[data-v-f5847ce4] {\n    width: 100%;\n    height: 100%;\n    border-radius: 0;\n    border: none;\n}\n.textArea[data-v-f5847ce4]{\n    margin-top: 30px;\n}\n.textArea textarea[data-v-f5847ce4] {\n    border: 1px solid black;\n}\n}\n@media only screen and (max-width: 767px) {\n.popup[data-v-f5847ce4] {\n    padding-top: 0;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.popup[data-v-f5847ce4] {\n  position: fixed;\n  padding-top: 50px;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 99;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n}\n.pop-inner[data-v-f5847ce4] {\n  margin-top: 0;\n  margin-right: 0;\n  margin-left: 0;\n\n  height: 85%;\n  width: 50%;\n  background: #fff;\n  border-radius: 15px;\n  padding: 20px;\n}\n.textArea[data-v-f5847ce4] {\n    width: 100%;\n    margin-top: 10px;\n    text-align: center;\n}\ntextarea[data-v-f5847ce4] {\n    width: 100%;\n}\n.submitBtn[data-v-f5847ce4] {\n    margin-top: 10px;\n    text-align: center;\n}\n.cross-button[data-v-f5847ce4] {\n  text-align: right;\n}\n@media only screen and (max-width: 767px) {\n.pop-inner[data-v-f5847ce4] {\n    width: 100%;\n    height: 100%;\n    border-radius: 0;\n    border: none;\n}\n.textArea[data-v-f5847ce4]{\n    margin-top: 30px;\n}\ntextarea[data-v-f5847ce4] {\n    border: 1px solid black;\n}\n}\n@media only screen and (max-width: 767px) {\n.popup[data-v-f5847ce4] {\n    padding-top: 0;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40152,7 +40160,6 @@ var render = function () {
                 _c("div", { staticClass: "message my_message" }, [
                   _c("p", [
                     _vm._v("\n              " + _vm._s(ques.question) + " "),
-                    _c("br"),
                     _c("span", [_vm._v(_vm._s(ques.time))]),
                   ]),
                 ]),
@@ -40164,8 +40171,7 @@ var render = function () {
                   _vm._v(" "),
                   ques.ans != ""
                     ? _c("p", { staticClass: "hello" }, [
-                        _vm._v("\n              " + _vm._s(ques.ans) + " "),
-                        _c("br"),
+                        _vm._v("\n              " + _vm._s(ques.ans)),
                         _c("span", [_vm._v(_vm._s(ques.time))]),
                       ])
                     : _vm._e(),
