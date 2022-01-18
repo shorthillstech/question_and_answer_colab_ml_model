@@ -85,7 +85,7 @@ Open your local server and go to this path:
 
 ## Sample Video 
 
-<img src="./docs/newcolabwithlinkadd.webm" width="700" height="400" />
+<img src="./docs/colab.gif" width="700" height="400" />
 
 
 
