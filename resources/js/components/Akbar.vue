@@ -68,6 +68,8 @@
         </div>
       </div>
 
+      <!-- Right Side -->
+
       <div class="rightSide" v-bind:class="showClass ? '' : 'active'">
         <div class="header">
           <div class="userText">
@@ -85,6 +87,7 @@
             <li><ion-icon name="ellipsis-vertical"></ion-icon></li>
           </ul>
         </div>
+
         <!-- chat box -->
         <div id="chatboxid" class="chatbox" v-chat-scroll>
           <div v-for="(ques, indx) in questionHistory" :key="indx">
@@ -169,7 +172,6 @@ export default {
       if (passage === "") {
       } else {
         this.Akbar = passage;
-        console.log(this.Akbar);
         this.showPopup = false;
       }
     },
@@ -180,36 +182,35 @@ export default {
       return i;
     },
     findTime() {
-      const d = new Date();
-      const hours = this.addZero(d.getHours());
-      const minutes = this.addZero(d.getMinutes());
+      const currentDate = new Date();
+      const hours = this.addZero(currentDate.getHours());
+      const minutes = this.addZero(currentDate.getMinutes());
       const time = hours + ":" + minutes;
       return time;
     },
     sendBtnCheck() {
-      let a = document.getElementById("data").value;
-      if (a !== "") {
+      let sendValue = document.getElementById("data").value;
+      if (sendValue !== "") {
         this.send = true;
       } else {
         this.send = false;
       }
     },
     search() {
-      let b = document.getElementById("search").value;
-      if (b === "") {
+      let searchValue = document.getElementById("search").value;
+      if (searchValue === "") {
         this.filtersShow = false;
       } else {
         this.filtersShow = true;
       }
       this.filters = this.experts.filter((ele) => {
-        return ele.name === b;
+        return ele.name === searchValue;
       });
     },
     back() {
       this.showClass = !this.showClass;
     },
     selectUser(user) {
-      console.log(user);
       this.showClass = !this.showClass;
       this.status = "Online";
       this.user = user;
@@ -224,14 +225,13 @@ export default {
             ele.time = time;
           }
         });
-        let a = document.getElementById("data").value;
-        let newQues = { question: a, ans: "", time: time };
+        let typedMessage = document.getElementById("data").value;
+        let newQues = { question: typedMessage, ans: "", time: time };
         this.questionHistory.push(newQues);
         document.getElementById("data").value = "";
         this.loader = true;
-        console.log("1", chatboxid.scrollHeight);
         axios
-          .get(this.url + "/ask?q=" + a + "&&p=" + this.Akbar)
+          .get(this.url + "/ask?q=" + typedMessage + "&&p=" + this.Akbar)
           .then((response) => {
             this.data = response.data;
             let len = this.questionHistory.length;
@@ -287,16 +287,8 @@ export default {
   flex: 70%;
   background: #e5ddd5;
 }
-.main .rightSide::before {
-  contain: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/images/pattern.png");
-  opacity: 0.06;
-}
+
+
 .header {
   position: relative;
   width: 100%;

@@ -75,7 +75,7 @@ export default {
     margin-top: 10px;
     text-align: center;
 }
-.textArea textarea {
+textarea {
     width: 100%;
 }
 .submitBtn {
@@ -95,7 +95,7 @@ export default {
   .textArea{
     margin-top: 30px;
   }
-  .textArea textarea {
+  textarea {
     border: 1px solid black;
   }
 }
