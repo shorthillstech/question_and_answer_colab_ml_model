@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import AkbarPopup from "./akbarPopup.vue";
+import AkbarPopup from "./QNApopup.vue";
 export default {
   components: {
     AkbarPopup,

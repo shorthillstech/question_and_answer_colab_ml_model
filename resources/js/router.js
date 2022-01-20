@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-import Akbar from "./components/Akbar.vue";
+import QNA from "./components/QNA.vue";
 import Linkadd from "./components/Linkadd.vue";
 
 
@@ -11,8 +11,8 @@ export default new VueRouter({
     routes: [
         {
             path: "/",
-            name: "Akbar",
-            component: Akbar
+            name: "QNA",
+            component: QNA
         },
         {
             path: "/linkadd",
