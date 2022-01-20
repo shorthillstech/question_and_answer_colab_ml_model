@@ -1,5 +1,5 @@
 <h1 align="center">
-    <b> Akbar Q&A </b> 
+    <b>  Q&A Colab Model</b> 
 <br>
 </h1>
 
@@ -16,10 +16,10 @@ To immediately use a model on a given input (text, image, audio, ...), we provid
 
 
 ## File Path
-Here is the file path for Akbar Colab ML Model.
-```/Akbar_Q&A/Q&A_API.ipynb```
+Here is the file path for QNA Colab ML Model.
+```/Q&A API/Q&A_API.ipynb```
 
-You can use the Akbar Colab file in your Colab setup
+You can use the QNA Colab file in your Colab setup
 
 ## Installation
 ```pip install flask-ngrok```
@@ -52,7 +52,7 @@ To access the API.<br>
 ## Laravel and Vue Installation
 
 Clone the Application on your local system.
-After cloning the application on your local system use ```cd Akbar-Colab-ML-Model``` command to go to the Cartoon ML model Directory 
+After cloning the application on your local system use ```cd QNA-Colab-ML-Model``` command to go to the QNA Colab ML model Directory 
 
 Install the default dependencies by running the following command.
 
