@@ -6,10 +6,17 @@
 ## What is this for?
 This repository give you information about akbar and if you ask any questions about Akbar than it is able to give you answer. 
 
-## Transformers
-[Transformer](https://pypi.org/project/transformers/) models can also perform tasks on several modalities combined, such as table question answering, optical character recognition, information extraction from scanned documents, video classification, and visual question answering.
+## Models and technologies used.
 
-To immediately use a model on a given input (text, image, audio, ...), we provide the pipeline API. Pipelines group together a pretrained model with the preprocessing that was used during that model's training. Here is how to quickly use a pipeline to classify positive versus negative texts:
+The model deepset roberta base squad2 is a Natural Language Processing (NLP) Model implemented in Transformer library, generally using the Python programming language.The model takes a passage and a question as input, then returns a segment of the passage that most likely answers the question.
+
+
+## Links to references
+
+HuggingFace
+
+https://huggingface.co/deepset/roberta-base-squad2
+
 
 ## Ngrok
 [Ngrok](https://ngrok.com/docs) allows you to expose a web server running on your local machine to the internet. Just tell ngrok what port your web server is listening on.
